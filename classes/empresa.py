@@ -63,9 +63,21 @@ class Empresa:
                     return "Funcionário demitido"
         else:
             return "Gerente demitido" 
+    
+    def promocao(self, funcionario):
+        if funcionario in self.contratados:
+            self.demissao(funcionario)
+            novo_gerente = Gerente(funcionario.nome_completo, funcionario.cpf, funcionario.salario)
+            self.contratar_funcionario(novo_gerente)
+            return novo_gerente
+        else:
+            return False
+
+
+
+
 
     @staticmethod
-    
     def ler_holerite(self, funcionario):
         empresa = "_".join(self.nome.lower().split())
         nome_funcionario = "_".join(funcionario.nome_completo.lower().split())
@@ -77,40 +89,22 @@ class Empresa:
         
             
 
-empresa_1 = Empresa("  kenzie   brasil ", 12345678910124)
-funcionario_1 = Funcionario(" jordan  cardoso poole ", 32112343215)
-gerente_1 = Gerente(" bill    gates ", "32132186712")
+funcionario_1 = Funcionario(" jordan  cardoso poole ", "32112343215")
+funcionario_4 = Funcionario("klay mota thompson ", "92478965434")
 gerente_3 = Gerente("elon musk", "12342186574")
-# Adicionando funcionários
+empresa_1 = Empresa("  kenzie   brasil ", "12345678910124")
+# Contratação do funcionário
 empresa_1.contratar_funcionario(funcionario_1)
-empresa_1.contratar_funcionario(gerente_1)
-empresa_1.contratar_funcionario(gerente_3)
-# Adicionando funcionário ao gerente
-gerente_1.adicionar_funcionario(funcionario_1)
-# Funcionário não contratado
-funcionario_4 = Funcionario("klay mota thompson ", 92478965434)
 
-
-empresa_1.gerar_holerite(funcionario_1)
-holerite = Empresa.ler_holerite(empresa_1 ,funcionario_1)
-print(holerite)
-
-
-print(len(empresa_1.contratados))
-# 3
-resposta = empresa_1.demissao(funcionario_4)
+resposta = empresa_1.promocao(gerente_3)
 print(resposta) 
-# Não consta esse CPF na empresa
-resposta = empresa_1.demissao(gerente_3) 
+# False
+resposta = empresa_1.promocao(funcionario_4)
 print(resposta) 
-# Gerente demitido!
-print(len(gerente_1.funcionarios)) 
-# 1
-resposta = empresa_1.demissao(funcionario_1)
-print(resposta) 
-# Funcionário demitido!
-print(len(gerente_1.funcionarios)) 
-# 0
-print(len(empresa_1.contratados)) 
-#1
+# False
+print(funcionario_1.funcao)
+# Funcionário
+resposta = empresa_1.promocao(funcionario_1)
+print(resposta.funcao) 
+# Gerente
  
