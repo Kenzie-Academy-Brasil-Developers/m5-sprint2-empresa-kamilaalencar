@@ -1,7 +1,7 @@
 import json
 import os
-from funcionario import Funcionario
 from datetime import datetime
+from funcionario import Funcionario
 from gerente import Gerente
 
 
@@ -50,7 +50,6 @@ class Empresa:
     def demissao(self, funcionario):
         if funcionario in self.contratados:
              self.contratados.pop(self.contratados.index(funcionario))
-        
         else:
             return "Não consta esse CPF na empresa"
 
@@ -65,18 +64,14 @@ class Empresa:
             return "Gerente demitido" 
     
     def promocao(self, funcionario):
-        if funcionario in self.contratados:
+        if isinstance(funcionario, Funcionario) == False or funcionario in self.contratados:
             self.demissao(funcionario)
             novo_gerente = Gerente(funcionario.nome_completo, funcionario.cpf, funcionario.salario)
             self.contratar_funcionario(novo_gerente)
             return novo_gerente
         else:
             return False
-
-
-
-
-
+            
     @staticmethod
     def ler_holerite(self, funcionario):
         empresa = "_".join(self.nome.lower().split())
@@ -86,25 +81,3 @@ class Empresa:
             return open(holerite, "r").read()
         except:
             return "Holerite não gerado!"
-        
-            
-
-funcionario_1 = Funcionario(" jordan  cardoso poole ", "32112343215")
-funcionario_4 = Funcionario("klay mota thompson ", "92478965434")
-gerente_3 = Gerente("elon musk", "12342186574")
-empresa_1 = Empresa("  kenzie   brasil ", "12345678910124")
-# Contratação do funcionário
-empresa_1.contratar_funcionario(funcionario_1)
-
-resposta = empresa_1.promocao(gerente_3)
-print(resposta) 
-# False
-resposta = empresa_1.promocao(funcionario_4)
-print(resposta) 
-# False
-print(funcionario_1.funcao)
-# Funcionário
-resposta = empresa_1.promocao(funcionario_1)
-print(resposta.funcao) 
-# Gerente
- 
