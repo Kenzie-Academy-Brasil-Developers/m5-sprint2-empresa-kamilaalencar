@@ -4,9 +4,6 @@ from datetime import datetime
 from funcionario import Funcionario
 from gerente import Gerente
 
-
-
-
 class Empresa:
     def __init__(self, nome, cnpj, contratados = []):
         self.nome = " ".join(nome.title().split()) 
