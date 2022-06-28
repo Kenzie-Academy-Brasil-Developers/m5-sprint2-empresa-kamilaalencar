@@ -1,4 +1,4 @@
-from funcionario import Funcionario
+from .funcionario import Funcionario
 
 class Gerente(Funcionario):
     funcao = "Gerente"

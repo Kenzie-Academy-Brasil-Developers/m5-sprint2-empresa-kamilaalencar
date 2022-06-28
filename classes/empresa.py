@@ -1,8 +1,8 @@
 import json
 import os
 from datetime import datetime
-from funcionario import Funcionario
-from gerente import Gerente
+from .funcionario import Funcionario
+from .gerente import Gerente
 
 class Empresa:
     def __init__(self, nome, cnpj, contratados = []):
